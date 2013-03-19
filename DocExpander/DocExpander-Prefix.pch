@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DocExpander' target in the 'DocExpander' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

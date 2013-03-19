@@ -1,0 +1,264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F5AF686E16F91DE60025FDE7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AF686D16F91DE60025FDE7 /* CoreFoundation.framework */; };
+		F5AF687416F91DE60025FDE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5AF687216F91DE60025FDE7 /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F5AF686A16F91DE60025FDE7 /* DocExpander.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DocExpander.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5AF686D16F91DE60025FDE7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		F5AF687116F91DE60025FDE7 /* DocExpander-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DocExpander-Info.plist"; sourceTree = "<group>"; };
+		F5AF687316F91DE60025FDE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F5AF687516F91DE60025FDE7 /* DocExpander-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DocExpander-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F5AF686716F91DE60025FDE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5AF686E16F91DE60025FDE7 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F5AF686116F91DE60025FDE7 = {
+			isa = PBXGroup;
+			children = (
+				F5AF686F16F91DE60025FDE7 /* DocExpander */,
+				F5AF686C16F91DE60025FDE7 /* Frameworks */,
+				F5AF686B16F91DE60025FDE7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F5AF686B16F91DE60025FDE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5AF686A16F91DE60025FDE7 /* DocExpander.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5AF686C16F91DE60025FDE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5AF686D16F91DE60025FDE7 /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5AF686F16F91DE60025FDE7 /* DocExpander */ = {
+			isa = PBXGroup;
+			children = (
+				F5AF687016F91DE60025FDE7 /* Supporting Files */,
+			);
+			path = DocExpander;
+			sourceTree = "<group>";
+		};
+		F5AF687016F91DE60025FDE7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F5AF687116F91DE60025FDE7 /* DocExpander-Info.plist */,
+				F5AF687216F91DE60025FDE7 /* InfoPlist.strings */,
+				F5AF687516F91DE60025FDE7 /* DocExpander-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F5AF686916F91DE60025FDE7 /* DocExpander */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5AF687816F91DE60025FDE7 /* Build configuration list for PBXNativeTarget "DocExpander" */;
+			buildPhases = (
+				F5AF686616F91DE60025FDE7 /* Sources */,
+				F5AF686716F91DE60025FDE7 /* Frameworks */,
+				F5AF686816F91DE60025FDE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DocExpander;
+			productName = DocExpander;
+			productReference = F5AF686A16F91DE60025FDE7 /* DocExpander.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F5AF686216F91DE60025FDE7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Mercury;
+			};
+			buildConfigurationList = F5AF686516F91DE60025FDE7 /* Build configuration list for PBXProject "DocExpander" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F5AF686116F91DE60025FDE7;
+			productRefGroup = F5AF686B16F91DE60025FDE7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5AF686916F91DE60025FDE7 /* DocExpander */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F5AF686816F91DE60025FDE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5AF687416F91DE60025FDE7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F5AF686616F91DE60025FDE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F5AF687216F91DE60025FDE7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5AF687316F91DE60025FDE7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F5AF687616F91DE60025FDE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F5AF687716F91DE60025FDE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F5AF687916F91DE60025FDE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DocExpander/DocExpander-Prefix.pch";
+				INFOPLIST_FILE = "DocExpander/DocExpander-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		F5AF687A16F91DE60025FDE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DocExpander/DocExpander-Prefix.pch";
+				INFOPLIST_FILE = "DocExpander/DocExpander-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F5AF686516F91DE60025FDE7 /* Build configuration list for PBXProject "DocExpander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5AF687616F91DE60025FDE7 /* Debug */,
+				F5AF687716F91DE60025FDE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5AF687816F91DE60025FDE7 /* Build configuration list for PBXNativeTarget "DocExpander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5AF687916F91DE60025FDE7 /* Debug */,
+				F5AF687A16F91DE60025FDE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F5AF686216F91DE60025FDE7 /* Project object */;
+}
