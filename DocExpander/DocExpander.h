@@ -16,11 +16,7 @@
 
 @property (nonatomic, retain) NSTextView *textView;
 
-/**
- * @return sharedPlugin
- **/
 + (instancetype)sharedPlugin;
 + (void)pluginDidLoad:(NSBundle *)plugin;
-+ (void)pluginDidLoad:(NSBundle *)plugin success:(BOOL)successResult;
 
 @end
