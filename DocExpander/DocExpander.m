@@ -123,85 +123,64 @@ static DocExpander *sharedPlugin = nil;
         }];
         
         if(matched) {
-            // Check the next line for a function and parse it to get our template
-            NSRange nextLineRange = [text lineRangeForRange:NSMakeRange(lineRange.location+lineRange.length, 1)];
-            NSString *nextLineText = [text substringWithRange:nextLineRange];
            
             
             NSString *methodRegEx = @"[-+]\\s+\\(\\s*([a-zA-Z0-9_\\s\\*$]*)\\s*\\)(.*)";
             
             NSRegularExpression *methodRegularExpression = [NSRegularExpression regularExpressionWithPattern:methodRegEx options:0 error:NULL];
             
-            NSString *lineTemplate = @"\n * @param %@ [Description]";
            
-            NSMutableString * commentString = [NSMutableString string];
+            __block NSMutableString * commentString = [NSMutableString string];
             [commentString appendString:@"\n * [Method Description]"];
             
             __block BOOL isMethod = NO;
+            
+            __block BOOL isFinished = NO;
+            
+            int numLines = 0;
+            
+            __block NSString *returnType = nil;
+            
+            // Check the next line for a function and parse it to get our template
+            NSRange nextLineRange = [text lineRangeForRange:NSMakeRange(lineRange.location+lineRange.length, 1)];
+
+            NSString *nextLineText = [text substringWithRange:nextLineRange];
             
             [methodRegularExpression enumerateMatchesInString:nextLineText options:0 range:NSMakeRange(0, nextLineText.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                 if(result.numberOfRanges == 3)
                {
                    isMethod = YES;
                    
-                   // 0 = Full Match
-                   // 1 = return type
-                   // 2 = remaining content
-                   NSString *returnType = [nextLineText substringWithRange:[result rangeAtIndex:1]];
-                   NSString *remainingContent = [nextLineText substringWithRange:[result rangeAtIndex:2]];
-                 
-                   int num = 0;
-                   int currentGroup = 0;
-                   NSScanner *scanner = [NSScanner scannerWithString:remainingContent];
+                   NSString *remainingContent = nil;
                    
-                    NSCharacterSet *argumentDescriptoSeparator = [NSCharacterSet characterSetWithCharactersInString:@":"];
-                   NSCharacterSet *argumentTypeOpener = [NSCharacterSet characterSetWithCharactersInString:@"("];
-                   NSCharacterSet *argumentTypeCloser = [NSCharacterSet characterSetWithCharactersInString:@")"];
-                   NSCharacterSet *methodEnding = [NSCharacterSet characterSetWithCharactersInString:@"; "];
-                   while(![scanner isAtEnd])
-                    {
-                        NSString *currentItem = nil;
-                        
-                        if(floor(num/3) > currentGroup)
-                        {
-                            currentGroup++;
-                        }
-                        
-                        int itemNum = num - (currentGroup*3);
-                        
-                        if(itemNum == 0)
-                        {
-                            [scanner scanUpToCharactersFromSet:argumentDescriptoSeparator intoString:&currentItem];
-                        }
-                        else if(itemNum == 1)
-                        {
-                            [scanner scanCharactersFromSet:argumentTypeOpener intoString:nil];
-                            [scanner scanUpToCharactersFromSet:argumentTypeCloser intoString:&currentItem];
-                        }
-                        else
-                        {
-                            [scanner scanCharactersFromSet:argumentTypeCloser intoString:nil];
-                            [scanner scanUpToCharactersFromSet:methodEnding intoString:&currentItem];
-                        }
-                        
-                        //itemNum0 is the part of the method name that corresponds to that argument
-                        //itemNum1 is the type for the argument
-                       
-                        // The internal argument name
-                        if(itemNum == 2)
-                        {
-                            [commentString appendString:[NSString stringWithFormat:lineTemplate, currentItem]];
-                        }
-                        
-                        num++;
-                    }
-                   
-                   if(![returnType isEqualToString:@"void"])
+                   if(numLines == 0)
                    {
-                       [commentString appendString:[NSString stringWithFormat:@"\n * @return [Description]"]];
+                       // 0 = Full Match
+                       // 1 = return type
+                       // 2 = remaining content
+                       returnType = [nextLineText substringWithRange:[result rangeAtIndex:1]];
+                       remainingContent = [nextLineText substringWithRange:[result rangeAtIndex:2]];
                    }
+                   
+                   [commentString appendString:[self scanText:remainingContent finished:&isFinished]];
+                   
                }
+                
             }];
+            
+            while(!isFinished)
+            {
+                nextLineRange = [text lineRangeForRange:NSMakeRange(nextLineRange.location+nextLineRange.length, 1)];
+                
+                nextLineText = [text substringWithRange:nextLineRange];
+                
+                [commentString appendString:[self scanText:nextLineText finished:&isFinished]];
+            }
+            
+            if(![returnType isEqualToString:@"void"])
+            {
+                [commentString appendString:[NSString stringWithFormat:@"\n * @return [Description]"]];
+            }
             
             if(isMethod)
             {
@@ -213,6 +192,67 @@ static DocExpander *sharedPlugin = nil;
             }
         }
     }
+}
+
+- (NSString *)scanText:(NSString *)text finished:(BOOL *)finished {
+    
+    NSMutableString *commentString = [[NSMutableString alloc] init];
+    NSString *lineTemplate = @"\n * @param %@ [Description]";
+    
+    int num = 0;
+    int currentGroup = 0;
+    
+    NSCharacterSet *argumentDescriptorSeparator = [NSCharacterSet characterSetWithCharactersInString:@":"];
+    NSCharacterSet *argumentTypeOpener = [NSCharacterSet characterSetWithCharactersInString:@"("];
+    NSCharacterSet *argumentTypeCloser = [NSCharacterSet characterSetWithCharactersInString:@")"];
+    NSCharacterSet *methodEnding = [NSCharacterSet characterSetWithCharactersInString:@"; "];
+    
+    NSScanner *scanner = [NSScanner scannerWithString:text];
+    
+    while(![scanner isAtEnd])
+    {
+        NSString *currentItem = nil;
+        
+        if(floor(num/3) > currentGroup)
+        {
+            currentGroup++;
+        }
+        
+        int itemNum = num - (currentGroup*3);
+        
+        if(itemNum == 0)
+        {
+            [scanner scanUpToCharactersFromSet:argumentDescriptorSeparator intoString:&currentItem];
+        }
+        else if(itemNum == 1)
+        {
+            [scanner scanCharactersFromSet:argumentTypeOpener intoString:nil];
+            [scanner scanUpToCharactersFromSet:argumentTypeCloser intoString:&currentItem];
+        }
+        else
+        {
+            [scanner scanCharactersFromSet:argumentTypeCloser intoString:nil];
+            [scanner scanUpToCharactersFromSet:methodEnding intoString:&currentItem];
+        }
+        
+        if([scanner scanCharactersFromSet:methodEnding intoString:nil])
+        {
+            *finished = YES;
+        }
+        
+        //itemNum0 is the part of the method name that corresponds to that argument
+        //itemNum1 is the type for the argument
+        
+        // The internal argument name
+        if(itemNum == 2)
+        {
+            [commentString appendString:[NSString stringWithFormat:lineTemplate, [currentItem stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]]];
+        }
+        
+        num++;
+    }
+    
+    return commentString;
 }
 
 @end
