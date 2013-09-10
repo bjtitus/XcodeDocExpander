@@ -220,9 +220,17 @@ static DocExpander *sharedPlugin = nil;
         
         int itemNum = num - (currentGroup*3);
         
+
         if(itemNum == 0)
         {
-            [scanner scanUpToCharactersFromSet:argumentDescriptorSeparator intoString:&currentItem];
+            if([scanner.string rangeOfCharacterFromSet:argumentDescriptorSeparator].location != NSNotFound)
+            {
+                [scanner scanUpToCharactersFromSet:argumentDescriptorSeparator intoString:&currentItem];
+            }
+            else
+            {
+                [scanner scanUpToCharactersFromSet:methodEnding intoString:&currentItem];
+            }
         }
         else if(itemNum == 1)
         {
